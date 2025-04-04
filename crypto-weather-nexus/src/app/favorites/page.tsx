@@ -1,26 +1,26 @@
-// import { useSelector, useDispatch } from "react-redux";
-// import { RootState } from "@/redux/store";
-// import { removeFavorite } from "@/redux/favoritesSlice";
+"use client";
+import React from "react";
+import { useSelector } from "react-redux";
 
-// const Favorites = () => {
-//   const favorites = useSelector((state: RootState) => state.favorites.items);
-//   const dispatch = useDispatch();
+export default function FavoritesPage() {
+  const { favouriteCities } = useSelector((state: any) => state.favorites);
 
-//   return (
-//     <div className="p-4">
-//       <h2 className="text-xl font-bold">Your Favorites</h2>
-//       <ul>
-//         {favorites.map((fav, index) => (
-//           <li key={index} className="flex justify-between p-2 border">
-//             {/* {fav.name} ({fav.type}) */}
-//             <button onClick={() => dispatch(removeFavorite(fav))} className="text-red-500">
-//               Remove
-//             </button>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
+  if (favouriteCities.length === 0)
+    return <p className="text-center text-gray-500 mt-4">No favorite cities yet.</p>;
 
-// export default Favorites;
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4 text-center">Favorite Cities</h1>
+
+      <table className="w-full border-collapse border border-gray-300">
+        <tbody>
+          {favouriteCities.map((city: string, index: number) => (
+            <tr key={index} className="text-center">
+              <td className="border border-gray-300 px-4 py-2">{city}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

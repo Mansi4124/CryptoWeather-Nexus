@@ -8,6 +8,7 @@ export default function Header() {
       <Link href="/crypto">Crypto</Link>
       <Link href="/weather">Weather</Link>
       <Link href="/news">News</Link>
+      <Link href="/favorites">Favourites</Link>
     </nav>
   );
 }

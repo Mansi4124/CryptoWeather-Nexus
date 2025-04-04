@@ -9,10 +9,11 @@ interface NewsCardProps {
 const NewsCard: React.FC<NewsCardProps> = ({ title, source, date, url }) => {
     return (
       <div className="border p-4 rounded-lg shadow-md">
-        <h3 className="text-lg font-bold">{title}</h3>
-        <p className="text-sm text-gray-500">{source} - {date}</p>
-        <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-500">Read More</a>
+         <h1 className="text-white-400 text-xl font-bold flex items-center gap-2 justify-center mt-2 h-20">
+        📰 Stay Informed! Latest News Updates 📢🌍
+      </h1>
       </div>
+     
     );
   };
   

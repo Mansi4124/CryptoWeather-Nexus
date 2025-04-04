@@ -29,7 +29,7 @@ export default function CityWeather() {
     const getWeather = async () => {
       setLoading(true);
       const data = await fetchWeather(city);
-      console.log("Fetched Weather Data:", data); // ✅ Debugging
+      console.log("Fetched Weather Data:", data); 
       if (data) {
         setWeatherData(data);
       }
