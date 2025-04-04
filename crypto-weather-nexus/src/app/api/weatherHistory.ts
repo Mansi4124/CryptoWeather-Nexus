@@ -1,8 +1,7 @@
 export async function fetchWeather(city: string) {
-    const API_KEY = "769657d6f4ff4ae4bcf161638250304";
+    const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
     const today = new Date();
-    
-    // Generate last 4 dates (YYYY-MM-DD format)
+  
     const lastFourDays = Array.from({ length: 4 }, (_, i) => {
       const date = new Date();
       date.setDate(today.getDate() - (i + 1));
@@ -10,8 +9,6 @@ export async function fetchWeather(city: string) {
     });
   
     try {
-      // Fetch data for last 4 days using Promise.all
-      console.log(lastFourDays)
       const responses = await Promise.all(
         lastFourDays.map(async (date) => {
           const res = await fetch(

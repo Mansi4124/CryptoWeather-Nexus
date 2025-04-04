@@ -12,12 +12,12 @@ const WeatherCard = () => {
       </h1>
 
       {/* <img src={`https://openweathermap.org/img/wn/${icon}.png`} alt="Weather Icon" /> */}
-      <div className="flex justify-center mt-2">
+      <div className="flex justify-center m-2">
         <Link
           href={`/weather`}
           className="text-blue-500 font-semibold hover:underline"
         >
-          View
+          Explore Weather of different cities
         </Link>
       </div>
     </div>

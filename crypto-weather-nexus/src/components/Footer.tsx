@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-      <footer className="bg-gray-800 text-white p-4 text-center mt-8">
+      <footer className="bg-blue-100 text-black p-4 text-center ">
         <p> CryptoWeather Nexus</p>
         <p>
           Hope you like it!!!

@@ -4,14 +4,15 @@
   import { useSelector } from "react-redux";
   import { fetchWeatherData } from "../../redux/weatherSlice"; 
   import { useAppDispatch } from "@/redux/store";
-  import { toggleFavourite } from "@/redux/favoritesSlice";
+  import { toggleFavouriteCity } from "@/redux/favoritesSlice";
 import Toast from "@/components/Toast";
+import Card from "@/components/Card";
   //  import { useAppDispatch } from "../../redux/store"; // Import the typed dispatch
 
   export default function WeatherPage() {
     const dispatch = useAppDispatch();
   const { weatherData, loading, error } = useSelector((state: any) => state.weather);
-  const { favouriteCities } = useSelector((state: any) => state.favorites);
+  const { likedCities } = useSelector((state: any) => state.favorites);
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ import Toast from "@/components/Toast";
   }, [dispatch]);
 
     const handleFavouriteClick = (city: string) => {
-      dispatch(toggleFavourite(city));
+      dispatch(toggleFavouriteCity(city));
     };
 
     if (loading) return <p>Loading weather...</p>;
@@ -35,41 +36,26 @@ import Toast from "@/components/Toast";
 
     return (
       <div>
-        {showToast && <Toast message="Weather updated" type="info" />}
-        <h1 className="text-2xl font-bold">Weather</h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {Object.keys(weatherData).map((city) => (
-            <div key={city} className="border p-4 rounded-lg shadow-md">
-              <h2 className="text-xl font-bold flex items-center gap-3">{city} 
-              <img
-                    src={weatherData[city]?.current?.condition?.icon}
-                    alt="Weather Icon"
-                    className="w-12 h-12"
-                  />
-                  <button
-                  onClick={() => handleFavouriteClick(city)}
-                  className="ml-auto text-xl"
-                >
-                  {favouriteCities.includes(city) ? "❤️" : "🤍"}
-                </button>
-              </h2>
-              {weatherData[city] ? (
-                <>
-                  <p>Temperature: {weatherData[city]?.current?.temp_c}°C
-                    
-                  </p>
-                  <p>Condition: {weatherData[city]?.current?.condition?.text}</p>
-                  <p>Humidity: {weatherData[city]?.current?.humidity}%</p>
-                  <Link href={`/weather/${city.toLowerCase()}`} className="text-blue-500 hover:underline">
-                    View More Details
-                  </Link>
-                </>
-              ) : (
-                <p>No data available</p>
-              )}
-            </div>
-          ))}
-        </div>
+      {showToast && <Toast message="Weather updated" type="info" />}
+      <h1 className="text-2xl font-bold mb-5">Weather</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {Object.keys(weatherData).map((city) => (
+          <Card
+            key={city}
+            id={city}
+            title={city}
+            icon={weatherData[city]?.current?.condition?.icon}
+            liked={likedCities.includes(city)}
+            onLikeClick={toggleFavouriteCity}
+            link={`/weather/${city.toLowerCase()}`}
+            details={[
+              { label: "Temperature", value: `${weatherData[city]?.current?.temp_c}°C` },
+              { label: "Condition", value: weatherData[city]?.current?.condition?.text },
+              { label: "Humidity", value: `${weatherData[city]?.current?.humidity}%` },
+            ]}
+          />
+        ))}
       </div>
+    </div>
     );
   }
