@@ -24,7 +24,7 @@ export default function WebSocketComponent() {
 
       
         setNotifications((prev) => {
-          const updatedNotifications = [{ id, price: newPrice }, ...prev];
+          const updatedNotifications = [{ id, price: newPrice }, ...prev].slice(0,3);
           return updatedNotifications;
         });
 
