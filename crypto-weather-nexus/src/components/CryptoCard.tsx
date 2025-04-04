@@ -17,7 +17,7 @@ const CryptoCard: React.FC<CryptoCardProps> = ({ id, name, price, change, market
 
       <div className="flex justify-center mt-2">
         <Link
-          href={`/crypto/${id}`}
+          href={`/crypto`}
           className="text-blue-400 font-semibold hover:underline"
         >
           🔍 Check Price Updates
