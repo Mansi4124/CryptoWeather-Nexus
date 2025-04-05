@@ -46,7 +46,7 @@ import Card from "@/components/Card";
             title={city}
             icon={weatherData[city]?.current?.condition?.icon}
             liked={likedCities.includes(city)}
-            onLikeClick={toggleFavouriteCity}
+            onLikeClick={() => handleFavouriteClick(city)}
             link={`/weather/${city.toLowerCase()}`}
             details={[
               { label: "Temperature", value: `${weatherData[city]?.current?.temp_c}°C` },

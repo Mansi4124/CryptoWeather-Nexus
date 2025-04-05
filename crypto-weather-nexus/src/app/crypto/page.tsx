@@ -40,7 +40,7 @@ export default function CryptoPage() {
             title={id.charAt(0).toUpperCase() + id.slice(1)}
             liked={likedCryptos.includes(id)}
             icon={''}
-            onLikeClick={toggleFavouriteCrypto}
+            onLikeClick={() => dispatch(toggleFavouriteCrypto(id))}
             link={`/crypto/${id}`}
             details={[
               { label: "💰 Price", value: `$${details.usd}` },
